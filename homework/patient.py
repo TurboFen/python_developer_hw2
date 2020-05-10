@@ -57,7 +57,6 @@ class CheckName:
             if 47 < ord(a) < 58:
                 count = count + 1
         if count > 0:
-            instance.loge = "Name contain numbers"
             raise ValueError()
         instance.__dict__[self.name] = value
 
@@ -144,9 +143,9 @@ class Checkdoctype:
     def __set__(self, instance, value):
         if value is not None:
             if type(value) != str:
-                instance.loge = "wrong type2"
+                raise ValueError
             if len(value) < 7:
-                instance.loge = "small name of type"
+                raise ValueError
             if value != "паспорт" and value != "заграничный паспорт" and value != "водительское удостоверение":
                 raise ValueError
             if instance.created:
@@ -165,7 +164,7 @@ class Checkdocnumber:
     def __set__(self, instance, value):
         if value is not None:
             if type(value) != str:
-                instance.loge = "wrong type3"
+                raise ValueError
             count = 0
             for a in value:
                 if 47 < ord(a) < 58:
@@ -195,7 +194,6 @@ class Patient:
     document_type = Checkdoctype()
     document_id = Checkdocnumber()
     logi = ""
-    loge = ""
 
     @my_logging_decorator_patient
     def __init__(self, first_name, last_name, birth_date, phone, document_type, document_id):
