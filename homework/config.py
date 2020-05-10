@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 GOOD_LOG_FILE = "Info.txt"
 ERROR_LOG_FILE = "mistakes.txt"
 CSV_PATH = "patiens.csv"
